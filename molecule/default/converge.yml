@@ -4,6 +4,6 @@
   hosts: all
   vars: null
   tasks:
-    - name: Include role 'ansible-role-common'
+    - name: Include role 'ansible-role-facts'
       include_role:
-        name: ansible-role-common
+        name: ansible-role-facts

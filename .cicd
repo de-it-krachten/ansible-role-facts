@@ -1,10 +1,10 @@
 ---
 
 # Generic
-role: ansible-role-common
-role_short: common
+role: ansible-role-facts
+role_short: facts
 role_description: |
-  Collection of smaller generic tasklist
+  Provisions several custom facts and runs setup optionally
 
 # Supported platform
 platforms:
@@ -23,9 +23,9 @@ platforms:
 
 # Ansible galaxy
 galaxy:
-  role_name: common
+  role_name: facts
   namespace: de_it_krachten
-  description: common
+  description: facts
   author: Mark van Huijstee
   company: De IT Krachten BV
   license: MIT
@@ -49,7 +49,7 @@ github:
   active: true
   self_hosted: false
   owner: de-it-krachten
-  repo: ansible-role-common
+  repo: ansible-role-facts
 
 # Gitlab
 gitlab:
