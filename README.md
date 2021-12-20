@@ -1,9 +1,9 @@
-[![CI](https://github.com/de-it-krachten/ansible-role-common/workflows/CI/badge.svg?event=push)](https://github.com/de-it-krachten/ansible-role-common/actions?query=workflow%3ACI)
+[![CI](https://github.com/de-it-krachten/ansible-role-facts/workflows/CI/badge.svg?event=push)](https://github.com/de-it-krachten/ansible-role-facts/actions?query=workflow%3ACI)
 
 
-# ansible-role-common
+# ansible-role-facts
 
-Collection of smaller generic tasklists 
+Provisions several custom facts and runs setup optionally
 
 
 Platforms
@@ -13,10 +13,10 @@ Supported platforms
 
 - CentOS 7
 - CentOS 8
-- Ubuntu 18.04 LTS
-- Ubuntu 20.04 LTS
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
+- Ubuntu 18.04 LTS
+- Ubuntu 20.04 LTS
 
 
 
@@ -30,6 +30,9 @@ custom_facts:
 
 # customer facts to distribute
 custom_facts_additional: []
+
+# Run setup when facts change
+custom_facts_setup: true
 </pre></code>
 
 
@@ -39,9 +42,9 @@ Example Playbook
 <pre><code>
 - name: Converge
   hosts: all
+  vars: null
   tasks:
-
-    - name: "Include role 'ansible-role-common'"
+    - name: Include role 'ansible-role-facts'
       include_role:
-        name: "ansible-role-common"
+        name: ansible-role-facts
 </pre></code>

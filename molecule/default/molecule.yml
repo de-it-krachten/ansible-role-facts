@@ -9,7 +9,7 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: common-${MOLECULE_DISTRO:-centos8}
+  - name: facts-${MOLECULE_DISTRO:-centos8}
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
@@ -24,7 +24,7 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
   inventory:
     host_vars:
-      common-centos8:
+      facts-centos8:
         ansible_python_interpreter: /usr/libexec/platform-python
 scenario:
   name: default
