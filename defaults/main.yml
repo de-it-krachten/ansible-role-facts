@@ -1,0 +1,12 @@
+---
+
+# default facts to distribute 
+custom_facts:
+  - users
+  - groups
+
+# customer facts to distribute
+custom_facts_additional: []
+
+# Run setup when facts change
+custom_facts_setup: true

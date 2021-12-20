@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Users=$(awk -F: '{print $1}' /etc/passwd | sort -u)
+Users1=$(echo $Users | sed "s/ /\", \"/g")
+
+echo '[ "'$Users1'" ]'

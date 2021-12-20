@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Groups=$(awk -F: '{print $1}' /etc/group | sort -u)
+Groups1=$(echo $Groups | sed "s/ /\", \"/g")
+
+echo '[ "'$Groups1'" ]'
