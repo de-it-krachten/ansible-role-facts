@@ -1,0 +1,4 @@
+generic:
+  role_description: |
+    Provisions several custom facts and runs setup optionally
+    
