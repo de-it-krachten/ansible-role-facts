@@ -5,7 +5,6 @@
 
 Provisions several custom facts and runs setup optionally
 
-
 Platforms
 --------------
 
@@ -13,6 +12,8 @@ Supported platforms
 
 - CentOS 7
 - CentOS 8
+- RockyLinux 8
+- AlmaLinux 8
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
@@ -40,11 +41,11 @@ Example Playbook
 ----------------
 
 <pre><code>
-- name: Converge
+- name: sample playbook for role 'facts'
   hosts: all
-  vars: null
+  vars:
   tasks:
-    - name: Include role 'ansible-role-facts'
+    - name: Include role 'facts'
       include_role:
-        name: ansible-role-facts
+        name: facts
 </pre></code>
