@@ -14,7 +14,7 @@
     dest: /etc/ansible/facts.d/{{ item }}.fact
     mode: '0755'
   loop: "{{ custom_facts }}"
-  notify: Run setup
+  register: _custom_facts
   
 - name: Distribute specific custom facts
   template:
@@ -23,4 +23,10 @@
     mode: '0755'
   loop: "{{ custom_facts_additional }}"
   when: item.group is undefined or inventory_hostname in groups[item.group]
-  notify: Run setup
+  register: _custom_facts_additional
+
+- name: Execute setup
+  setup:
+  when:
+    - custom_facts_setup|bool
+    - _custom_facts.changed or _custom_facts_additional.changed

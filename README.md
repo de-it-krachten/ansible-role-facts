@@ -5,8 +5,7 @@
 
 Provisions several custom facts and runs setup optionally
 
-Platforms
---------------
+## Platforms
 
 Supported platforms
 
@@ -19,12 +18,13 @@ Supported platforms
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
 
-Role Variables
---------------
+## Role Variables
+### defaults/main.yml
 <pre><code>
 # default facts to distribute 
 custom_facts:
@@ -39,9 +39,9 @@ custom_facts_setup: true
 </pre></code>
 
 
-Example Playbook
-----------------
 
+## Example Playbook
+### molecule/default/converge.yml
 <pre><code>
 - name: sample playbook for role 'facts'
   hosts: all
