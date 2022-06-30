@@ -8,7 +8,7 @@
     group: root
     mode: "0755"
 
-- name: Convert fact configuraion into the latest format
+- name: Convert facts configuration into the latest format
   set_fact:
     _facts: >-
       {{ _facts|default([]) +
