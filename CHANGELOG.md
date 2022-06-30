@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.2.0...v1.2.1) (2022-06-30)
+
+
+### Bug Fixes
+
+* fix some typo's in default varaibles ([51b45e8](https://github.com/de-it-krachten/ansible-role-facts/commit/51b45e8841fed1170c08652fdb2f86978bedd0fd))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.1.0...v1.2.0) (2022-06-30)
 
 
