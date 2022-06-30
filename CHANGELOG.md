@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.1.0...v1.2.0) (2022-06-30)
+
+
+### Features
+
+* add support for platform specifc facts ([48b1a41](https://github.com/de-it-krachten/ansible-role-facts/commit/48b1a4153d3cd81656cf03024ae41014a6af5348))
+
 # [1.1.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.0.0...v1.1.0) (2022-06-25)
 
 
