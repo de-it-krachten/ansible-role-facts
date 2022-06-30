@@ -1,12 +1,20 @@
 ---
 
-# default facts to distribute 
-custom_facts:
-  - users
-  - groups
+# facts location
+facts_path: /etc/ansible/facts.d
+
+# list of defaults facts to distribute 
+facts_custom:
+  - name: users
+    groups: all
+  - name: groups
+    group: toos
+  - name: repolist
+    groups: all
+    os_family: [ 'RedHat' ]
 
 # customer facts to distribute
-custom_facts_additional: []
+facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
 
 # Run setup when facts change
-custom_facts_setup: true
+facts_run_setup: true

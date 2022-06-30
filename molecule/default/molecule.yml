@@ -9,14 +9,27 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: facts-${MOLECULE_DISTRO:-centos8}
-    # image: "${namespace:-'geerlingguy'}/${image:-'docker-rockylinux-ansible'}:${tag:-'latest'}"
-    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+
+  - name: facts-rockylinux8
+    image: "geerlingguy/docker-rockylinux8-ansible:latest"
+    rhsm: False
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    privileged: true
-    pre_build_image: true
+    privileged: True
+    pre_build_image: True
+    dockerfile: Dockerfile.rockylinux8.j2
+
+  - name: facts-debian11
+    image: "geerlingguy/docker-debian11-ansible:latest"
+    rhsm: False
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: True
+    pre_build_image: True
+    dockerfile: Dockerfile.debian11.j2
+
 provisioner:
   name: ansible
   env:
@@ -27,7 +40,7 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
   inventory:
     host_vars:
-      facts-centos8:
+      facts-rockylinux8:
         ansible_python_interpreter: /usr/libexec/platform-python
 scenario:
   name: default

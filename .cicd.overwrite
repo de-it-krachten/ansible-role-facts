@@ -22,3 +22,14 @@ molecule:
       image: "geerlingguy/docker-fedora35-ansible:latest"
     - name: fedora36
       image: "geerlingguy/docker-fedora36-ansible:latest"
+  converge:
+    vars:
+      custom_facts_additional:
+        - name: fact1
+          groups: all
+        - name: fact2
+          os_family: [ 'RedHat' ]
+        - name: fact3
+          group: group1
+        - name: fact4
+          groups: [ 'group2' ]

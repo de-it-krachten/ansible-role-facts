@@ -2,31 +2,39 @@
 
 - name: Create custom facts directory
   file:
-    path: /etc/ansible/facts.d
+    path: "{{ facts_path }}"
     state: directory
     owner: root
     group: root
     mode: "0755"
 
-- name: Distributes generic custom facts
-  template:
-    src: "{{ item }}.fact.j2"
-    dest: /etc/ansible/facts.d/{{ item }}.fact
-    mode: '0755'
-  loop: "{{ custom_facts }}"
-  register: _custom_facts
-  
-- name: Distribute specific custom facts
+- name: Convert fact configuraion into the latest format
+  set_fact:
+    _facts: >-
+      {{ _facts|default([]) +
+        [ {
+          'name': (item.name|default(item)),
+          'groups': [item.group] if item.group is defined else (item.groups|default('all')),
+          'os': (item.os | default('all')),
+          'os_family': (item.os_family | default('all'))
+        } ]
+      }}
+  loop: "{{ facts_custom + facts_custom_additional }}"
+
+- name: Distributes custom facts
   template:
     src: "{{ item.name }}.fact.j2"
-    dest: /etc/ansible/facts.d/{{ item.name }}.fact
+    dest: "{{ facts_path }}/{{ item.name }}.fact"
     mode: '0755'
-  loop: "{{ custom_facts_additional }}"
-  when: item.group is undefined or inventory_hostname in groups[item.group]
-  register: _custom_facts_additional
+  loop: "{{ _facts }}"
+  register: _facts_results
+  when:
+    - item.groups == 'all' or group_names|intersect(item.groups)|length > 0
+    - item.os == 'all' or ansible_distribution in item.os
+    - item.os_family == 'all' or ansible_os_family in item.os_family
 
 - name: Execute setup
   setup:
   when:
-    - custom_facts_setup|bool
-    - _custom_facts.changed or _custom_facts_additional.changed
+    - facts_run_setup|bool
+    - _facts_results.changed
