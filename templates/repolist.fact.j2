@@ -1,0 +1,6 @@
+#!/bin/bash
+
+Repos_enabled=$(echo $(yum repolist --enabled | awk 'NR>1 {print $1}') | sed "s/^/\"/;s/ /\", \"/g;s/$/\"/")
+Repos_disabled=$(echo $(yum repolist --disabled | awk 'NR>1 {print $1}') | sed "s/^/\"/;s/ /\", \"/g;s/$/\"/")
+
+echo "{ \"enabled\": [ $Repos_enabled ], \"disabled\": [ $Repos_disabled ] }"

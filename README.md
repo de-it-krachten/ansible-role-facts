@@ -13,6 +13,7 @@ Supported platforms
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - CentOS 7
+- CentOS 8
 - RockyLinux 8
 - AlmaLinux 8<sup>1</sup>
 - Debian 10 (Buster)
@@ -22,6 +23,8 @@ Supported platforms
 - Ubuntu 22.04 LTS
 - Fedora 35
 - Fedora 36
+- Fedora 35
+- Fedora 36
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -29,16 +32,24 @@ Note:
 ## Role Variables
 ### defaults/main.yml
 <pre><code>
-# default facts to distribute 
-custom_facts:
-  - users
-  - groups
+# facts location
+facts_path: /etc/ansible/facts.d
+
+# list of defaults facts to distribute 
+facts_custom:
+  - name: users
+    groups: all
+  - name: groups
+    group: toos
+  - name: repolist
+    groups: all
+    os_family: [ 'RedHat' ]
 
 # customer facts to distribute
-custom_facts_additional: []
+facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
 
 # Run setup when facts change
-custom_facts_setup: true
+facts_run_setup: true
 </pre></code>
 
 
@@ -49,6 +60,7 @@ custom_facts_setup: true
 - name: sample playbook for role 'facts'
   hosts: all
   vars:
+    custom_facts_additional: [{'name': 'fact1', 'groups': 'all'}, {'name': 'fact2', 'os_family': ['RedHat']}, {'name': 'fact3', 'group': 'group1'}, {'name': 'fact4', 'groups': ['group2']}]
   tasks:
     - name: Include role 'facts'
       include_role:
