@@ -1,7 +1,7 @@
 ---
 
 - name: Create custom facts directory
-  file:
+  ansible.builtin.file:
     path: "{{ facts_path }}"
     state: directory
     owner: root
@@ -9,7 +9,7 @@
     mode: "0755"
 
 - name: Convert facts configuration into the latest format
-  set_fact:
+  ansible.builtin.set_fact:
     _facts: >-
       {{ _facts|default([]) +
         [ {
@@ -22,7 +22,7 @@
   loop: "{{ facts_custom + facts_custom_additional }}"
 
 - name: Distributes custom facts
-  template:
+  ansible.builtin.template:
     src: "{{ item.name }}.fact.j2"
     dest: "{{ facts_path }}/{{ item.name }}.fact"
     mode: '0755'
@@ -34,7 +34,7 @@
     - item.os_family == 'all' or ansible_os_family in item.os_family
 
 - name: Execute setup
-  setup:
+  ansible.builtin.setup:
   when:
     - facts_run_setup|bool
     - _facts_results.changed
