@@ -2,4 +2,4 @@
 
 - name: Run setup
   ansible.builtin.setup:
-  when: custom_facts_setup|bool
+  when: custom_facts_setup | bool

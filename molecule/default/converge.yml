@@ -7,5 +7,5 @@
     custom_facts_additional: [{'name': 'fact1', 'groups': 'all'}, {'name': 'fact2', 'os_family': ['RedHat']}, {'name': 'fact3', 'group': 'group1'}, {'name': 'fact4', 'groups': ['group2']}]
   tasks:
     - name: Include role 'ansible-role-facts'
-      include_role:
+      ansible.builtin.include_role:
         name: ansible-role-facts
