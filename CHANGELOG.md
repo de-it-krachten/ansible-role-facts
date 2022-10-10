@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.3.0...v1.4.0) (2022-10-10)
+
+
+### Features
+
+* Move to FQCN ([3478fc9](https://github.com/de-it-krachten/ansible-role-facts/commit/3478fc932197c403714d2c401b224b914b1cf1fb))
+* Update CI to latest standards ([0798920](https://github.com/de-it-krachten/ansible-role-facts/commit/07989202f1560c2b4a19088dd96e1130b93bc5d0))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.2.1...v1.3.0) (2022-07-28)
 
 
