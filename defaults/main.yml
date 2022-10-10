@@ -3,7 +3,7 @@
 # facts location
 facts_path: /etc/ansible/facts.d
 
-# list of defaults facts to distribute 
+# list of defaults facts to distribute
 # Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
 # groups, os and os_family should be lists
 facts_custom:
