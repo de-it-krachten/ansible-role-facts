@@ -6,6 +6,15 @@
 Provisions several custom facts and runs setup optionally
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+
 ## Platforms
 
 Supported platforms
@@ -36,7 +45,7 @@ Note:
 # facts location
 facts_path: /etc/ansible/facts.d
 
-# list of defaults facts to distribute 
+# list of defaults facts to distribute
 # Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
 # groups, os and os_family should be lists
 facts_custom:
@@ -54,6 +63,7 @@ facts_run_setup: true
 
 
 
+
 ## Example Playbook
 ### molecule/default/converge.yml
 <pre><code>
@@ -64,6 +74,6 @@ facts_run_setup: true
     custom_facts_additional: [{'name': 'fact1', 'groups': 'all'}, {'name': 'fact2', 'os_family': ['RedHat']}, {'name': 'fact3', 'group': 'group1'}, {'name': 'fact4', 'groups': ['group2']}]
   tasks:
     - name: Include role 'facts'
-      include_role:
+      ansible.builtin.include_role:
         name: facts
 </pre></code>

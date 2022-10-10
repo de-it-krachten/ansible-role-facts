@@ -1,7 +1,7 @@
 ---
 
 - name: Create custom facts directory
-  file:
+  ansible.builtin.file:
     path: "{{ facts_path }}"
     state: directory
     owner: root
@@ -9,12 +9,12 @@
     mode: "0755"
 
 - name: Convert facts configuration into the latest format
-  set_fact:
+  ansible.builtin.set_fact:
     _facts: >-
-      {{ _facts|default([]) +
+      {{ _facts | default([]) +
         [ {
-          'name': (item.name|default(item)),
-          'groups': [item.group] if item.group is defined else (item.groups|default('all')),
+          'name': (item.name | default(item)),
+          'groups': [item.group] if item.group is defined else (item.groups | default('all')),
           'os': (item.os | default('all')),
           'os_family': (item.os_family | default('all'))
         } ]
@@ -22,19 +22,19 @@
   loop: "{{ facts_custom + facts_custom_additional }}"
 
 - name: Distributes custom facts
-  template:
+  ansible.builtin.template:
     src: "{{ item.name }}.fact.j2"
     dest: "{{ facts_path }}/{{ item.name }}.fact"
     mode: '0755'
   loop: "{{ _facts }}"
   register: _facts_results
   when:
-    - item.groups == 'all' or group_names|intersect(item.groups)|length > 0
+    - item.groups == 'all' or group_names | intersect(item.groups)| length > 0
     - item.os == 'all' or ansible_distribution in item.os
     - item.os_family == 'all' or ansible_os_family in item.os_family
 
 - name: Execute setup
-  setup:
+  ansible.builtin.setup:
   when:
-    - facts_run_setup|bool
+    - facts_run_setup | bool
     - _facts_results.changed
