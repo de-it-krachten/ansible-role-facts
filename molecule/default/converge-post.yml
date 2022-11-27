@@ -1,0 +1,9 @@
+---
+
+- name: Converge
+  hosts: all
+  become: "yes"
+  tasks:
+    - name: Show all custom facts
+      ansible.builtin.debug:
+        var: ansible_local

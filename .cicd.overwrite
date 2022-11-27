@@ -7,8 +7,10 @@ generic:
   role_description: |
     Provisions several custom facts and runs setup optionally
 
+# Molecule
 molecule:
   converge:
+    post: converge-post.yml
     vars:
       custom_facts_additional:
         - name: fact1
