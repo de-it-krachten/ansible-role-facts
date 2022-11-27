@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.4.0...v1.5.0) (2022-11-27)
+
+
+### Features
+
+* Add Alpine to list of supported platforms ([51f3963](https://github.com/de-it-krachten/ansible-role-facts/commit/51f396366e94f1a45fe29ae2ac467849cdb2b39d))
+* Add new custom facts 'users_ext' & 'groups_ext' ([d0e3103](https://github.com/de-it-krachten/ansible-role-facts/commit/d0e3103bd62657b444880e7592319a687768f093))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.3.0...v1.4.0) (2022-10-10)
 
 
