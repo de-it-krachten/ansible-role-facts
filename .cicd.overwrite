@@ -7,6 +7,12 @@ generic:
   role_description: |
     Provisions several custom facts and runs setup optionally
 
+# Supported platforms
+platforms:
+  alpine3:
+    ci: true
+    supported: true
+
 # Molecule
 molecule:
   converge:
