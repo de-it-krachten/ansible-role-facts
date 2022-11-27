@@ -1,0 +1,26 @@
+#!/bin/sh
+
+IFS=":"
+
+exec 3</etc/passwd
+
+# Count number of lines
+Line=0
+Lines=$(wc -l /etc/passwd | awk '{print $1}')
+
+echo "{"
+while read -u3 user x uid pgid gecos home shell
+do
+  Line=$(( $Line + 1 ))
+  echo "  \"$user\": {"
+  echo "    \"name\": \"$user\","
+  echo "    \"uid\": $uid,"
+  echo "    \"pgid\": $pgid,"
+  echo "    \"gecos\": \"$gecos\","
+  echo "    \"home\": \"$home\","
+  echo "    \"shell\": \"$shell\""
+  [[ $Line == $Lines ]] && echo "  }" || echo "  },"
+done
+echo "}"
+
+exec 3<&-

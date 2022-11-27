@@ -26,6 +26,7 @@ Supported platforms
 - RockyLinux 8
 - RockyLinux 9
 - OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
 - Debian 10 (Buster)
@@ -35,6 +36,7 @@ Supported platforms
 - Ubuntu 22.04 LTS
 - Fedora 35
 - Fedora 36
+- Alpine 3
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -50,7 +52,9 @@ facts_path: /etc/ansible/facts.d
 # groups, os and os_family should be lists
 facts_custom:
   - name: users
+  - name: users_ext
   - name: groups
+  - name: groups_ext
   - name: repolist
     os_family: [ 'RedHat' ]
 
@@ -69,11 +73,14 @@ facts_run_setup: true
 <pre><code>
 - name: sample playbook for role 'facts'
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   vars:
     custom_facts_additional: [{'name': 'fact1', 'groups': 'all'}, {'name': 'fact2', 'os_family': ['RedHat']}, {'name': 'fact3', 'group': 'group1'}, {'name': 'fact4', 'groups': ['group2']}]
   tasks:
     - name: Include role 'facts'
       ansible.builtin.include_role:
         name: facts
+
+- name: sample playbook for role 'facts' post playbook
+  ansible.builtin.import_playbook: converge-post.yml
 </pre></code>

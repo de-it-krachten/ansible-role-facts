@@ -1,0 +1,23 @@
+#!/bin/sh
+
+IFS=":"
+
+exec 3</etc/group
+
+# Count number of lines
+Line=0
+Lines=$(wc -l /etc/group | awk '{print $1}')
+
+echo "{"
+while read -u3 group x gid members
+do
+  Line=$(( $Line + 1 ))
+  echo "  \"$group\": {"
+  echo "    \"name\": \"$group\","
+  echo "    \"gid\": $gid,"
+  echo "    \"members\": \"$members\""
+  [[ $Line == $Lines ]] && echo "  }" || echo "  },"
+done
+echo "}"
+
+exec 3<&-
