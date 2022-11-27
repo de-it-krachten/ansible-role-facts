@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.5.0...v1.5.1) (2022-11-27)
+
+
+### Bug Fixes
+
+* Force user/group extended facts to run in bash ([0db8600](https://github.com/de-it-krachten/ansible-role-facts/commit/0db8600692ec2079ab7ce2a712f85c27ff4e6322))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.4.0...v1.5.0) (2022-11-27)
 
 
