@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Get cpu flags
+Flags1=$(cat /proc/cpuinfo | grep ^flags | head -1)
+Flags2=[$(echo $Flags1 | sed "s/.*: //;s/^/\"/;s/ /\",\"/g;s/$/\"/")]
+
+# Check for virtuallization support
+virt=false
+echo "$Flags1" | grep -qw vmx && virt=true  # Intel
+echo "$Flags1" | grep -qw svm && virt=true  # AMD
+
+echo -e "{\n  \"flags\": $Flags2,\n\"virtualization_support\": $virt\n}"
