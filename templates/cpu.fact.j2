@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Intel
+virt=false
+lscpu | grep -q "Flags:.* vmx" && virt=true
+lscpu | grep -q "Flags:.* svm" && virt=true
+
+echo -e "{\n  \"virtualization_support\": $virt\n}"

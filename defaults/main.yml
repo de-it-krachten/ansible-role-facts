@@ -13,6 +13,7 @@ facts_custom:
   - name: groups_ext
   - name: repolist
     os_family: [ 'RedHat' ]
+  - name: cpu
 
 # customer facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
