@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.5.1...v1.6.0) (2023-01-12)
+
+
+### Features
+
+* Add cpu capabilities (virtualization support) ([ffdaa8e](https://github.com/de-it-krachten/ansible-role-facts/commit/ffdaa8ea8d78fa7b3bcc83fa365cca4a7df3fab8))
+* Update CI/README/Platforms ([afe6db6](https://github.com/de-it-krachten/ansible-role-facts/commit/afe6db61878cc296d44ea8b4bfc31390b47682c7))
+
 ## [1.5.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.5.0...v1.5.1) (2022-11-27)
 
 
