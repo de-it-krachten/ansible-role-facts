@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get all kernels
+kernels=$(cd /boot ; ls -d vmlinuz-* | grep -v rescue | sed -r "s/.*([0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+).*/\\1/" | sort -V -r)
+kernels1=$(echo $kernels | sed "s/^/\"/;s/ /\", \"/g;s/$/\"/")
+
+# Get active kernel
+kernel_active=$(uname -r | sed -r "s/.*([0-9]+\\.[0-9]+\\.[0-9]+-[0-9]+).*/\\1/")
+
+# Get latest kernel
+kernel_latest=$(echo "$kernels" | head -1)
+
+# Display fact information 
+echo "{ \"active\": \"$kernel_active\", \"latest\": \"$kernel_latest\", \"all\": [ $kernels1 ] }"
