@@ -1,4 +1,14 @@
 #!/bin/sh
+
 slurm_nodeinfo=`/usr/sbin/slurmd -C 2>/dev/null | head -1`
+slurm_memory_percentage={{ slurm_memory_percentage | default('100') }}
+
+if test -n "$slurm_nodeinfo"
+then
+  RealMemory=`echo $slurm_nodeinfo | sed "s/.*RealMemory=//;s/ .*//"`
+  RealMemory1=`expr $RealMemory \* $slurm_memory_percentage / 100`
+  slurm_nodeinfo=`echo $slurm_nodeinfo | sed "s/RealMemory=$RealMemory/RealMemory=$RealMemory1/"`
+fi
+
 slurm_nodeinfo=${slurm_nodeinfo:-'NA'}
 echo "{ \"nodeinfo\": \"$slurm_nodeinfo\" }"

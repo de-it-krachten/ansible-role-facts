@@ -7,6 +7,7 @@ facts_path: /etc/ansible/facts.d
 # Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
 # groups, os and os_family should be lists
 facts_custom:
+  - name: kernel
   - name: users
   - name: users_ext
   - name: groups

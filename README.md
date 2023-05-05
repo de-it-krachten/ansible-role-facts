@@ -34,8 +34,8 @@ Supported platforms
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 35
 - Fedora 36
+- Fedora 37
 - Alpine 3
 
 Note:
@@ -51,6 +51,7 @@ facts_path: /etc/ansible/facts.d
 # Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
 # groups, os and os_family should be lists
 facts_custom:
+  - name: kernel
   - name: users
   - name: users_ext
   - name: groups
@@ -84,4 +85,5 @@ facts_run_setup: true
 
 - name: sample playbook for role 'facts' post playbook
   ansible.builtin.import_playbook: converge-post.yml
+  when: molecule_converge_post is undefined or molecule_converge_post | bool
 </pre></code>
