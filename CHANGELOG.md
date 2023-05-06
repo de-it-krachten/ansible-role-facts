@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.6.0...v1.7.0) (2023-05-06)
+
+
+### Features
+
+* Add support for slurm to assign a percentage of the total memory ([7751fc2](https://github.com/de-it-krachten/ansible-role-facts/commit/7751fc2603713302797b80e18cfdcd9c18beae5c))
+* Add support kernel running & present ([400f3b6](https://github.com/de-it-krachten/ansible-role-facts/commit/400f3b61751eeb2053200fa4f5e69a6e98310f51))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.5.1...v1.6.0) (2023-01-12)
 
 
