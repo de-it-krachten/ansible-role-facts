@@ -1,0 +1,26 @@
+#!/bin/bash
+
+[[ $(id -un) != root ]] && Sudo=sudo
+
+disks=$(ls -d /sys/block/sd*/device/scsi_device/* 2>/dev/null)
+
+# Count number of lines
+Line=0
+Lines=$(echo "$disks" | wc -l)
+
+echo "["
+
+for x in $disks
+do
+  echo "  {"
+  Line=$(( $Line + 1 ))
+  disk=$(echo $x | cut -f4 -d/)
+  id=$(echo $x | cut -f7 -d/)
+  size=$(( $($Sudo blockdev --getsize64 /dev/$disk) / 1024 / 1024))
+
+  echo "    \"disk\": \"$disk\","
+  echo "    \"id\": \"$id\","
+  echo "    \"size\": $size"
+  [[ $Line == $Lines ]] && echo "  }" || echo "  },"
+done
+echo "]"
