@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.8.0...v1.9.0) (2023-09-08)
+
+
+### Features
+
+* Add fact for mapper links ([ad7a73d](https://github.com/de-it-krachten/ansible-role-facts/commit/ad7a73ddbcd126a97518c2b0eb517e11c2a53143))
+* Add facts for scsi devices ([a916829](https://github.com/de-it-krachten/ansible-role-facts/commit/a9168295dc5cf332a548887cefd17a446162b032))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.7.0...v1.8.0) (2023-08-14)
 
 
