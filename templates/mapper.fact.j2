@@ -1,0 +1,23 @@
+#!/bin/bash
+
+[[ $(id -un) != root ]] && Sudo=sudo
+
+mappers=$(ls -d /dev/mapper/* 2>/dev/null)
+
+# Count number of lines
+Line=0
+Lines=$(echo "$mappers" | wc -l)
+
+echo "{"
+
+for mapper in $mappers
+do
+  Line=$(( $Line + 1 ))
+  [[ ! -L $mapper ]] && continue
+  target=$(readlink -f $mapper)
+  echo -e "  \"$mapper\": \"$target\"\c"
+  [[ $Line == $Lines ]] && echo "" || echo ","
+
+done
+
+echo "}"
