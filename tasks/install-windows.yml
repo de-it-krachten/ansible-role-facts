@@ -1,0 +1,21 @@
+---
+
+- name: Create custom facts directory
+  ansible.windows.win_file:
+    path: "{{ facts_path }}"
+    state: directory
+
+- name: Distributes custom facts
+  ansible.windows.win_template:
+    src: "windows/{{ item.name }}.ps1.j2"
+    dest: "{{ facts_path }}/{{ item.name }}.ps1"
+  loop: "{{ _facts }}"
+  register: _facts_results
+  when:
+    - item.groups == 'all' or group_names | intersect(item.groups)| length > 0
+    - item.os == 'all' or ansible_distribution in item.os
+    - item.os_family == 'all' or ansible_os_family in item.os_family
+
+- name: Execute setup
+  ansible.builtin.setup:
+    fact_path: "{{ facts_path }}"

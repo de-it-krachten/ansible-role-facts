@@ -1,0 +1,16 @@
+---
+
+# facts location
+facts_path: c:\temp\facts
+
+# list of defaults facts to distribute
+# Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
+# groups, os and os_family should be lists
+facts_custom:
+  - disks_custom
+
+# customer facts to distribute
+facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
+
+# Run setup when facts change
+facts_run_setup: true

@@ -1,0 +1,41 @@
+function Get-PhysicalDiskPropertiesFromWmi {
+    $diskInfo = foreach ($disk in Get-WmiObject Win32_DiskDrive) {
+        [pscustomobject]@{
+            DeviceId = $disk.index
+            SerialNumber = $disk.SerialNumber
+            SCSIBus = $disk.scsibus
+            SCSILogicalUnit = $disk.scsilogicalunit
+            SCSIPort = $disk.scsiport
+            SCSITargetId = $disk.scsitargetid
+        }
+    }
+    return $diskInfo | Sort-Object DeviceID
+}
+
+function Get-PhysicalDiskProperties {
+    $physicalDisks = Get-PhysicalDisk | Select-Object DeviceId,PhysicalLocation,BusType,Size,SerialNumber,UniqueId
+    $physicalDisksWmi = Get-PhysicalDiskPropertiesFromWmi
+
+    foreach($item in $physicalDisks) {
+        if ($item.PhysicalLocation -match "Integrated : Adapter (\d+) : Port (\d+)") {
+            $item | Add-Member -NotePropertyName Adapter -NotePropertyValue $Matches[1]
+            $item | Add-Member -NotePropertyName Port -NotePropertyValue $Matches[2]
+        }
+        $item | Add-Member -NotePropertyName SizeGB -NotePropertyValue ([math]::Round($item.Size / 1GB,0))
+
+        # Update data from Wmi
+        $wmiDisk = $physicalDisksWmi | Where-Object { $_.DeviceId -eq $item.DeviceId }
+        if ($wmiDisk) {
+            $item | Add-Member -NotePropertyName SCSIBus -NotePropertyValue $wmiDisk.SCSIBus
+            $item | Add-Member -NotePropertyName SCSILogicalUnit -NotePropertyValue $wmiDisk.SCSILogicalUnit
+            $item | Add-Member -NotePropertyName SCSIPort -NotePropertyValue $wmiDisk.SCSIPort
+            $item | Add-Member -NotePropertyName SCSITargetId -NotePropertyValue $wmiDisk.SCSITargetId
+        } else { Write-Host "Not found!"}
+    }
+
+    return @{
+        disks = $physicalDisks | Sort-Object DeviceId
+    }    
+}
+
+return Get-PhysicalDiskProperties

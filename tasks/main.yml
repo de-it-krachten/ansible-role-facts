@@ -1,4 +1,15 @@
 ---
 
-- name: Include facts.yml
-  ansible.builtin.include_tasks: facts.yml
+- name: Load variables based on OS type
+  ansible.builtin.include_tasks: vars.yml
+
+- name: Include pre.yml
+  ansible.builtin.include_tasks: pre.yml
+
+- name: Include install.yml (Linux)
+  ansible.builtin.include_tasks: install.yml
+  when: ansible_os_family != 'Windows'
+
+- name: Include install-windows.yml (Windows)
+  ansible.builtin.include_tasks: install-windows.yml
+  when: ansible_os_family == 'Windows'
