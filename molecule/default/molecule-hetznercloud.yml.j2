@@ -27,13 +27,43 @@ provisioner:
 {% endif %}
   env:
     ANSIBLE_PIPELINING: "True"
+    ANSIBLE_VERBOSITY: {{ molecule.ansible.verbosity | default(0) }}
   lint:
     name: ansible-lint
   playbooks:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
   inventory:
-    group_vars: {}
-    host_vars: {}
+    group_vars:
+      linux:
+        ansible_password: vagrant
+        ansible_user: vagrant
+        custom_facts_additional:
+        - groups: all
+          name: fact1
+        - name: fact2
+          os_family:
+          - RedHat
+        - group: group1
+          name: fact3
+        - groups:
+          - group2
+          name: fact4
+      windows:
+        ansible_become_method: runas
+        ansible_become_user: vagrant
+        ansible_connection: ssh
+        ansible_password: vagrant
+        ansible_shell_type: cmd
+        ansible_user: vagrant
+        custom_facts_additional:
+        - winfoo
+
+    host_vars:
+{% for platform in MOLECULE_DISTROS %}
+      facts-{{ platform.name }}-node1:
+        foo: bar
+
+{% endfor %}
 scenario:
   name: default
 verifier:

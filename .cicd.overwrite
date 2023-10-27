@@ -5,19 +5,32 @@ generic:
   role: ansible-role-facts
   role_short: facts
   role_description: |
-    Provisions several custom facts and runs setup optionally
+    Provisions custom facts and runs setup optionally
 
 # Supported platforms
 platforms:
   alpine3:
     ci: true
     supported: true
+  win2012r2:
+    ci: false
+    supported: true
+  win2016:
+    ci: false
+    supported: true
+  win2019:
+    ci: false
+    supported: true
+  win2022:
+    ci: false
+    supported: true
 
 # Molecule
 molecule:
   converge:
     post: converge-post.yml
-    vars:
+  group_vars:
+    linux:
       custom_facts_additional:
         - name: fact1
           groups: all
@@ -27,3 +40,9 @@ molecule:
           group: group1
         - name: fact4
           groups: [ 'group2' ]
+    windows:
+      custom_facts_additional:
+        - winfoo
+  host_vars:
+    facts-{{ platform.name }}-node1:
+      foo: bar

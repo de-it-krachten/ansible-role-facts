@@ -3,7 +3,7 @@
 
 # ansible-role-facts
 
-Provisions several custom facts and runs setup optionally
+Provisions custom facts and runs setup optionally
 
 
 
@@ -31,7 +31,6 @@ Supported platforms
 - AlmaLinux 9
 - SUSE Linux Enterprise 15<sup>1</sup>
 - openSUSE Leap 15
-- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
@@ -39,6 +38,10 @@ Supported platforms
 - Fedora 37
 - Fedora 38
 - Alpine 3
+- Windows 2012 R2<sup>1</sup>
+- Windows 2016<sup>1</sup>
+- Windows 2019<sup>1</sup>
+- Windows 2022<sup>1</sup>
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -61,6 +64,25 @@ facts_custom:
   - name: repolist
     os_family: [ 'RedHat' ]
   - name: cpu
+  - name: scsi
+  - name: mapper
+
+# customer facts to distribute
+facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
+
+# Run setup when facts change
+facts_run_setup: true
+</pre></code>
+
+### defaults/family-Windows.yml
+<pre><code>
+# facts location
+facts_path: c:\temp\facts
+
+# list of defaults facts to distribute
+# Possible attributes : name, groups (default=all), os (default=all), os_family (default=all)
+# groups, os and os_family should be lists
+facts_custom: []
 
 # customer facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
@@ -78,8 +100,6 @@ facts_run_setup: true
 - name: sample playbook for role 'facts'
   hosts: all
   become: "yes"
-  vars:
-    custom_facts_additional: [{'name': 'fact1', 'groups': 'all'}, {'name': 'fact2', 'os_family': ['RedHat']}, {'name': 'fact3', 'group': 'group1'}, {'name': 'fact4', 'groups': ['group2']}]
   tasks:
     - name: Include role 'facts'
       ansible.builtin.include_role:
