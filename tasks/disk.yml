@@ -1,0 +1,30 @@
+---
+
+- name: Initialize Windows disk
+  community.windows.win_initialize_disk:
+    disk_number: "{{ disk_number }}"
+
+- name: Cleanup undesired partitions
+  community.windows.win_partition:
+    disk_number: "{{ disk_number }}"
+    partition_number: "{{ item.partition_number }}"
+    state: absent
+  loop: "{{ partitions | default([]) }}"
+  when: item.state is defined and item.state == 'absent'
+
+- name: Create partitions on disk
+  community.windows.win_partition:
+    disk_number: "{{ disk_number }}"
+    drive_letter: "{{ item.drive_letter }}"
+    partition_number: "{{ item.partition_number | default(omit) }}"
+    partition_size: "{{ item.partition_size | default('-1') }}"
+    state: present
+  loop: "{{ partitions | default([]) }}"
+  when: item.state is undefined or item.state == 'present'
+
+- name: Format Windows disks
+  community.windows.win_format:
+    drive_letter: "{{ item.drive_letter }}"
+    file_system: "{{ item.file_system | default('ntfs') }}"
+    full: "{{ item.full | default(omit) }}"
+  loop: "{{ partitions | default([]) }}"
