@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.9.0...v1.10.0) (2023-11-01)
+
+
+### Features
+
+* Add support for Windows ([6d4a9f8](https://github.com/de-it-krachten/ansible-role-facts/commit/6d4a9f8007a0f3e0faa8eef3b8059cb6c74ae7a7))
+
 # [1.9.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.8.0...v1.9.0) (2023-09-08)
 
 
