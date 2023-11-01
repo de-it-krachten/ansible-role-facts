@@ -1,0 +1,14 @@
+---
+
+- name: Convert facts configuration into the latest format
+  ansible.builtin.set_fact:
+    _facts: >-
+      {{ _facts | default([]) +
+        [ {
+          'name': (item.name | default(item)),
+          'groups': [item.group] if item.group is defined else (item.groups | default('all')),
+          'os': (item.os | default('all')),
+          'os_family': (item.os_family | default('all'))
+        } ]
+      }}
+  loop: "{{ facts_custom + facts_custom_additional }}"

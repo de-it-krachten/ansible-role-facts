@@ -1,2 +1,6 @@
 ---
-collections: []
+collections:
+  - ansible.posix
+  - ansible.windows
+  - community.general
+  - community.windows

@@ -4,6 +4,12 @@
   hosts: all
   become: "yes"
   tasks:
-    - name: Show all custom facts
+    - name: Show all custom facts (Linux)
       ansible.builtin.debug:
         var: ansible_local
+      when: ansible_os_family != 'Windows'
+
+    - name: Show all custom facts (Windows)
+      ansible.builtin.debug:
+        var: ansible_disks_custom
+      when: ansible_os_family == 'Windows'
