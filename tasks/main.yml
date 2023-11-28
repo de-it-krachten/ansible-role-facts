@@ -13,3 +13,7 @@
 - name: Include install-windows.yml (Windows)
   ansible.builtin.include_tasks: install-windows.yml
   when: ansible_os_family == 'Windows'
+
+- name: Set variable to show role was executed
+  ansible.builtin.set_fact:
+    role_facts_executed: true

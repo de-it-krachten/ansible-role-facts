@@ -15,37 +15,15 @@ platforms:
   win2012r2:
     ci: false
     supported: true
-    molecule:
-      vagrant:
-        instance_raw_config_args:
-          - "vm.disk :disk, name: \"disk1\", size: \"1GB\""
-          - "vm.disk :disk, name: \"disk2\", size: \"2GB\""
   win2016:
     ci: false
     supported: true
-    molecule:
-      vagrant:
-        instance_raw_config_args:
-          - "vm.disk :disk, name: \"disk1\", size: \"1GB\""
-          - "vm.disk :disk, name: \"disk2\", size: \"2GB\""
   win2019:
     ci: false
     supported: true
-    molecule:
-      vagrant:
-        instance_raw_config_args:
-          - "vm.disk :disk, name: \"disk1\", size: \"1GB\""
-          - "vm.disk :disk, name: \"disk2\", size: \"2GB\""
-
   win2022:
     ci: false
     supported: true
-    molecule:
-      vagrant:
-        instance_raw_config_args:
-          - "vm.disk :disk, name: \"disk1\", size: \"1GB\""
-          - "vm.disk :disk, name: \"disk2\", size: \"2GB\""
-
 
 # Molecule
 molecule:
