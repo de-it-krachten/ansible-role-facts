@@ -13,7 +13,7 @@ Provisions custom facts and runs setup optionally
 None
 
 #### Collections
-- community.general
+- ansible.windows
 
 ## Platforms
 
