@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.10.0...v1.10.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* Add variable to check for role execution in other roles ([04e1071](https://github.com/de-it-krachten/ansible-role-facts/commit/04e10712883926203cfa1437d01d9279a0b93a8a))
+
 # [1.10.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.9.0...v1.10.0) (2023-11-01)
 
 
