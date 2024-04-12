@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.10.1...v1.10.2) (2024-04-12)
+
+
+### Bug Fixes
+
+* Add bool 'facts_force_run_setup' to forcingly execute setup ([c9efeaf](https://github.com/de-it-krachten/ansible-role-facts/commit/c9efeafad439d9134c462c6e14ccaa8411d13b95))
+
 ## [1.10.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.10.0...v1.10.1) (2023-11-28)
 
 
