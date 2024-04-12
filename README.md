@@ -72,6 +72,9 @@ facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
 
 # Run setup when facts change
 facts_run_setup: true
+
+# Execute setup in all cases
+facts_force_run_setup: false
 </pre></code>
 
 ### defaults/family-Windows.yml

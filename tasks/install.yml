@@ -24,6 +24,4 @@
 - name: Execute setup
   ansible.builtin.setup:
     fact_path: "{{ facts_path }}"
-  when:
-    - facts_run_setup | bool
-    - _facts_results.changed
+  when: facts_force_run_setup | bool or ( facts_run_setup | bool and _facts_results.changed )
