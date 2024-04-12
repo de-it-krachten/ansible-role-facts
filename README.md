@@ -13,7 +13,7 @@ Provisions custom facts and runs setup optionally
 None
 
 #### Collections
-- {'name': 'ansible.windows'}
+- ansible.windows
 
 ## Platforms
 
