@@ -5,10 +5,12 @@
     _facts: >-
       {{ _facts | default([]) +
         [ {
-          'name': (item.name | default(item)),
-          'groups': [item.group] if item.group is defined else (item.groups | default('all')),
-          'os': (item.os | default('all')),
-          'os_family': (item.os_family | default('all'))
+          'name': (fact.name | default(fact)),
+          'groups': [fact.group] if fact.group is defined else (fact.groups | default('all')),
+          'os': (fact.os | default('all')),
+          'os_family': (fact.os_family | default('all'))
         } ]
       }}
   loop: "{{ facts_custom + facts_custom_additional }}"
+  loop_control:
+    loop_var: fact

@@ -11,15 +11,17 @@
 
 - name: Distributes custom facts
   ansible.builtin.template:
-    src: "{{ item.name }}.fact.j2"
-    dest: "{{ facts_path }}/{{ item.name }}.fact"
+    src: "{{ fact.name }}.fact.j2"
+    dest: "{{ facts_path }}/{{ fact.name }}.fact"
     mode: '0755'
   loop: "{{ _facts }}"
+  loop_control:
+    loop_var: fact
   register: _facts_results
   when:
-    - item.groups == 'all' or group_names | intersect(item.groups)| length > 0
-    - item.os == 'all' or ansible_distribution in item.os
-    - item.os_family == 'all' or ansible_os_family in item.os_family
+    - fact.groups == 'all' or group_names | intersect(fact.groups)| length > 0
+    - fact.os == 'all' or ansible_distribution in fact.os
+    - fact.os_family == 'all' or ansible_os_family in fact.os_family
 
 - name: Execute setup
   ansible.builtin.setup:
