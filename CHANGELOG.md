@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.11.0...v1.12.0) (2024-07-13)
+
+
+### Bug Fixes
+
+* Use loop_var names to avoid duplicates ([fb2bb89](https://github.com/de-it-krachten/ansible-role-facts/commit/fb2bb89ac637351bdf7b449d150d8db2565106f3))
+
+
+### Features
+
+* Remove support for RHEL/CentOS 7 ([d5c5d66](https://github.com/de-it-krachten/ansible-role-facts/commit/d5c5d66432e645577cfa1c17ea988b020d8a5b6c))
+
 # [1.11.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.10.2...v1.11.0) (2024-06-01)
 
 
