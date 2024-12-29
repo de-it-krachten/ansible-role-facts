@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.12.0...v1.13.0) (2024-12-29)
+
+
+### Features
+
+* Update supported platforms & CI ([142bccc](https://github.com/de-it-krachten/ansible-role-facts/commit/142bccc618c1ab35b650d7e9dc9cf70742906c9b))
+
 # [1.12.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.11.0...v1.12.0) (2024-07-13)
 
 
