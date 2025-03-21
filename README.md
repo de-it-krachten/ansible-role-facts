@@ -65,6 +65,7 @@ facts_custom:
   - name: cpu
   - name: scsi
   - name: mapper
+  - name: platform
 
 # customer facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
@@ -86,6 +87,7 @@ facts_path: c:\temp\facts
 # groups, os and os_family should be lists
 facts_custom:
   - disks_custom
+  - platform
 
 # customer facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"

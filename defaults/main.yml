@@ -17,6 +17,7 @@ facts_custom:
   - name: cpu
   - name: scsi
   - name: mapper
+  - name: platform
 
 # customer facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
