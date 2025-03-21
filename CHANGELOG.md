@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.13.0...v1.14.0) (2025-03-21)
+
+
+### Features
+
+* Add fact for Windows hypervisor platform discovery ([8648e58](https://github.com/de-it-krachten/ansible-role-facts/commit/8648e58fd26f4e1a84c505797bf14082032473a8))
+
 # [1.13.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.12.0...v1.13.0) (2024-12-29)
 
 
