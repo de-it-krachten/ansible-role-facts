@@ -57,6 +57,7 @@ provisioner:
   env:
     ANSIBLE_PIPELINING: "True"
     ANSIBLE_VERBOSITY: 0
+    ANSIBLE_LIBRARY: '{{ Ansible_driver_libary }}'
   lint:
     name: ansible-lint
   playbooks:
