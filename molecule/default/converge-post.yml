@@ -7,9 +7,12 @@
     - name: Show all custom facts (Linux)
       ansible.builtin.debug:
         var: ansible_local
-      when: ansible_os_family != 'Windows'
+#      when: ansible_os_family != 'Windows'
 
     - name: Show all custom facts (Windows)
       ansible.builtin.debug:
-        var: ansible_disks_custom
+        var: vars[item]
+      loop: "{{ facts_custom | map('regex_replace', '^', 'ansible_') | list }}"
+      loop_control:
+        label: item
       when: ansible_os_family == 'Windows'

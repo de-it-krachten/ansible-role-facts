@@ -1,0 +1,72 @@
+function Test-MetadataEndpoint {
+  param (
+    [string]$url,
+    [hashtable]$headers = $null
+  )
+  try {
+    if ($headers) {
+      Invoke-RestMethod -Uri $url -Headers $headers -TimeoutSec 2 | Out-Null
+    } else {
+      Invoke-RestMethod -Uri $url -TimeoutSec 2 | Out-Null
+    }
+    return $true
+  } catch {
+    return $false
+  }
+}
+
+$cloud = "unknown"
+$hypervisor = "unknown"
+
+# Check if metadata IP is even reachable on port 80
+$metadataReachable = $false
+try {
+  $test = Test-NetConnection -ComputerName 169.254.169.254 -Port 80 -WarningAction SilentlyContinue
+  if ($test.TcpTestSucceeded) {
+    $metadataReachable = $true
+  }
+} catch {
+  $metadataReachable = $false
+}
+
+# If port is open, do cloud detection
+if ($metadataReachable) {
+  if (Test-MetadataEndpoint "http://169.254.169.254/latest/meta-data/") {
+    $cloud = "aws"
+  } elseif (Test-MetadataEndpoint "http://169.254.169.254/metadata/instance?api-version=2021-01-01" @{Metadata="true"}) {
+    $cloud = "azure"
+  } elseif (Test-MetadataEndpoint "http://169.254.169.254/computeMetadata/v1/" @{ "Metadata-Flavor" = "Google" }) {
+    $cloud = "gcp"
+  } elseif (Test-MetadataEndpoint "http://169.254.169.254/hetzner/v1/metadata") {
+    $cloud = "hetzner"
+  }
+} else {
+  $cloud = "local"
+}
+
+# Hypervisor detection
+$sys = Get-CimInstance -ClassName Win32_ComputerSystem
+$info = "$($sys.Manufacturer)|$($sys.Model)"
+
+switch -regex ($info) {
+  "VirtualBox" { $hypervisor = "virtualbox"; break }
+  "VMware"     { $hypervisor = "vmware"; break }
+  "Microsoft Corporation\|Virtual Machine" { $hypervisor = "hyperv"; break }
+  "KVM|QEMU"   { $hypervisor = "kvm"; break }
+}
+
+# Classify type
+if ($cloud -notin @("unknown", "local")) {
+  $type = "cloud"
+} elseif ($hypervisor -ne "unknown") {
+  $type = "virtual"
+} else {
+  $type = "baremetal"
+}
+
+@{
+  cloud = $cloud
+  hypervisor = $hypervisor
+  type = $type
+} | ConvertTo-Json -Compress
+
