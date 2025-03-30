@@ -1,52 +1,82 @@
 #!/bin/bash
 
-METADATA_IP="169.254.169.254"
-CLOUD="unknown"
-HYPERVISOR="unknown"
-TYPE="unknown"
+curl='curl -s --connect-timeout 1 --fail'
+meta_url=http://169.254.169.254
 
-# Test if metadata IP is reachable on port 80
-if timeout 1 bash -c "</dev/tcp/$METADATA_IP/80" 2>/dev/null; then
-  # Try AWS
-  if curl -s --connect-timeout 1 http://$METADATA_IP/latest/meta-data/ >/dev/null; then
-    CLOUD="aws"
-  # Azure
-  elif curl -s -H "Metadata:true" --connect-timeout 1 "http://$METADATA_IP/metadata/instance?api-version=2021-01-01" >/dev/null; then
-    CLOUD="azure"
-  # GCP
-  elif curl -s -H "Metadata-Flavor: Google" --connect-timeout 1 "http://$METADATA_IP/computeMetadata/v1/" >/dev/null; then
-    CLOUD="gcp"
-  # Hetzner
-  elif curl -s --connect-timeout 1 "http://$METADATA_IP/hetzner/v1/metadata" >/dev/null; then
-    CLOUD="hetzner"
-  else
-    CLOUD="unknown"
+detect_hypervisor() {
+  hypervisor="unknown"
+  # Detect hypervisor from DMI data
+  if command -v dmidecode >/dev/null; then
+    sysinfo=$(sudo dmidecode -s system-manufacturer 2>/dev/null)"|$(sudo dmidecode -s system-product-name 2>/dev/null)"
+
+    case "$sysinfo" in
+      *VirtualBox*)        hypervisor="virtualbox" ;;
+      *VMware*)            hypervisor="vmware" ;;
+      *Microsoft*Virtual\ Machine*) hypervisor="hyperv" ;;
+      *KVM*|*QEMU*)        hypervisor="kvm" ;;
+      *Hetzner*|*vServer*) hypervisor="kvm" ;;
+    esac
   fi
-else
-  CLOUD="local"
-fi
+} 
 
-# Detect hypervisor from DMI data
-if command -v dmidecode >/dev/null; then
-  SYSINFO=$(sudo dmidecode -s system-manufacturer 2>/dev/null)"|$(sudo dmidecode -s system-product-name 2>/dev/null)"
+detect_cloud_provider() {
 
-  case "$SYSINFO" in
-    *VirtualBox*) HYPERVISOR="virtualbox" ;;
-    *VMware*)     HYPERVISOR="vmware" ;;
-    *Microsoft*Virtual\ Machine*) HYPERVISOR="hyperv" ;;
-    *KVM*|*QEMU*) HYPERVISOR="kvm" ;;
-    *)            HYPERVISOR="unknown" ;;
-  esac
-fi
+  # Default
+  cloud=unknown
 
-# Determine type
-if [[ "$CLOUD" != "unknown" && "$CLOUD" != "local" ]]; then
-  TYPE="cloud"
-elif [[ "$HYPERVISOR" != "unknown" ]]; then
-  TYPE="virtual"
-else
-  TYPE="baremetal"
-fi
+  # No cloud
+  if ! $curl ${meta_url} >/dev/null 2>&1; then
+    cloud=local
+    return
+  fi
+
+  # Hetzner
+  if $curl ${meta_url}/hetzner/v1/metadata >/dev/null 2>&1; then
+    cloud=hetzner
+    return
+  fi
+
+  # Azure (uses jq to check for `.compute`)
+  azure_metadata=$($curl -H "Metadata:true" "${meta_url}/metadata/instance?api-version=2021-02-01")
+  if echo "$azure_metadata" | jq -e '.compute' >/dev/null 2>&1; then
+    cloud=azure
+    return
+  fi
+
+  # GCP
+  if $curl -H "Metadata-Flavor: Google" "${meta_url}/computeMetadata/v1/instance/id" >/dev/null 2>&1 ; then
+    cloud=gcp
+    return
+  fi
+
+  # OCI (uses jq to check for `availabilityDomain`)
+  oci_metadata=$($curl ${meta_url}/opc/v1/instance/)
+  if echo "$oci_metadata" | jq -e '.availabilityDomain' >/dev/null 2>&1; then
+    cloud=oci
+    return
+  fi
+
+  # AWS
+  if $curl ${meta_url}/latest/meta-data/instance-id >/dev/null 2>&1; then
+    cloud=aws
+    return
+  fi
+}
+
+process_data() {
+  # Determine type
+  if [[ ! "$cloud" =~ ^(unknown|local) ]]; then
+    type="cloud"
+  elif [[ "$hypervisor" != "unknown" ]]; then
+    type="virtual"
+  else
+    type="baremetal"
+  fi
+}
+
+detect_cloud_provider
+detect_hypervisor
+process_data
 
 # Output JSON
-echo -n "{\"cloud\": \"$CLOUD\", \"hypervisor\": \"$HYPERVISOR\", \"type\": \"$TYPE\"}"
+echo -n "{\"cloud\": \"$cloud\", \"hypervisor\": \"$hypervisor\", \"type\": \"$type\"}"
