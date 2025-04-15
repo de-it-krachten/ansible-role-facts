@@ -21,3 +21,5 @@
 - name: Execute setup
   ansible.builtin.setup:
     fact_path: "{{ facts_path }}"
+  retries: 3
+  delay: 5
