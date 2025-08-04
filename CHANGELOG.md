@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.15.0...v1.15.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* Delete unwanted '.ansible' files making 'ansible-galaxy' fail ([f871edd](https://github.com/de-it-krachten/ansible-role-facts/commit/f871edd740c9b02f8ecce518a5305969032f0dc9))
+
 # [1.15.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.14.0...v1.15.0) (2025-08-04)
 
 
