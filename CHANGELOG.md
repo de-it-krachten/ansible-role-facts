@@ -1,3 +1,15 @@
+# [1.15.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.14.0...v1.15.0) (2025-08-04)
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([d512b05](https://github.com/de-it-krachten/ansible-role-facts/commit/d512b05519c9ae4b6f32151e0c23aee4123c6e10))
+* Add support for Debian 13 (Trixie) ([d2fb591](https://github.com/de-it-krachten/ansible-role-facts/commit/d2fb5917d920213ef170047ace290741532b9649))
+* Add support for OracleLinux 10 ([fc5c890](https://github.com/de-it-krachten/ansible-role-facts/commit/fc5c890e8e3c1d2fc9d6637b851d6b7c33c6a629))
+* Add support for Red Hat Enterprise Linux 10 ([81e267b](https://github.com/de-it-krachten/ansible-role-facts/commit/81e267b3b9b99983115cb4fe072abb2bb130f6bc))
+* Add support for RockyLinux 10 ([16cca24](https://github.com/de-it-krachten/ansible-role-facts/commit/16cca2473c3c43aed0c63c1355f03a92ce35ad9c))
+* Add support for Windows Server 2025 ([96d4bfb](https://github.com/de-it-krachten/ansible-role-facts/commit/96d4bfb6eb7051cb6ae643a720161215ae84768a))
+
 # [1.14.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.13.0...v1.14.0) (2025-03-21)
 
 
