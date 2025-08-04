@@ -24,6 +24,9 @@ platforms:
   win2022:
     ci: false
     supported: true
+  win2025:
+    ci: false
+    supported: true
 
 # Molecule
 molecule:
