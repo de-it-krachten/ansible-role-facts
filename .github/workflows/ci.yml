@@ -294,7 +294,7 @@ jobs:
       - name: Set up Python 3.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
 
       - name: Show runner info
@@ -323,7 +323,7 @@ jobs:
           python3 -m venv ~/.venv
           source ~/.venv/bin/activate
           pip3 install pip wheel setuptools --upgrade
-          pip3 install yq e2j2 jinja2-ansible-filters
+          pip3 install yq e2j2 jinja2-ansible-filters passlib
           # pip3 install "${{ matrix.ansible }}" "${{ matrix.ansible_lint }}" "ansible-compat<4" "molecule<5" yamllint jmespath
           pip3 install "${{ matrix.ansible }}" "${{ matrix.ansible_lint }}" yamllint jmespath molecule
 
