@@ -1,3 +1,13 @@
+# [1.16.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.15.1...v1.16.0) (2026-03-14)
+
+
+### Features
+
+* Added support for Fedora 43 ([35bcf05](https://github.com/de-it-krachten/ansible-role-facts/commit/35bcf053f84fcdd3acbf03860c08a2846be3691e))
+* Added support for openSUSE Leap 16 ([d94861a](https://github.com/de-it-krachten/ansible-role-facts/commit/d94861a3bbef28b4413db36503f22f304e128b69))
+* Added support for SUSE Linux Enterprise 16 ([0d8fc5f](https://github.com/de-it-krachten/ansible-role-facts/commit/0d8fc5fa66580ae526f312b55a19824d30e36f4a))
+* Drop support for Fedora 41 ([98609ac](https://github.com/de-it-krachten/ansible-role-facts/commit/98609ac98004f6d10de46c27a7a228d17099969a))
+
 ## [1.15.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.15.0...v1.15.1) (2025-08-04)
 
 
