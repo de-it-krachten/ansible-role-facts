@@ -1,3 +1,13 @@
+# [1.18.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.17.0...v1.18.0) (2026-05-11)
+
+
+### Features
+
+* Add support for kernel module facts (lsmod) ([f735fa8](https://github.com/de-it-krachten/ansible-role-facts/commit/f735fa8f4ec001c4f2826aa1b0a0e2c8e56ba4c9))
+* Added support for Fedora 44 ([36abed6](https://github.com/de-it-krachten/ansible-role-facts/commit/36abed692a98535f07a5852ea22daa6ed45b8728))
+* Added support for Ubuntu 26.04 LTS ([b142823](https://github.com/de-it-krachten/ansible-role-facts/commit/b142823204283c204144d0618bc9e8c097867fdc))
+* Drop support for Fedora 42 ([4839e03](https://github.com/de-it-krachten/ansible-role-facts/commit/4839e03e7485ac8d704f3f812c2823fedb477bf2))
+
 # [1.17.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.16.0...v1.17.0) (2026-03-15)
 
 
