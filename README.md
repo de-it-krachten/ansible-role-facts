@@ -10,7 +10,8 @@ Provisions custom facts and runs setup optionally
 ## Dependencies
 
 #### Roles
-None
+- deitkrachten.epel
+- deitkrachten.python
 
 #### Collections
 - ansible.windows
@@ -37,8 +38,9 @@ Supported platforms
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
-- Fedora 42
+- Ubuntu 26.04 LTS
 - Fedora 43
+- Fedora 44<sup>1</sup>
 - Alpine 3
 - Windows Server 2012 R2<sup>1</sup>
 - Windows Server 2016<sup>1</sup>
@@ -71,8 +73,19 @@ facts_custom:
   - name: scsi
   - name: mapper
   - name: platform
+  - name: lsmod
 
-# customer facts to distribute
+# List of packages required to custom facts
+facts_packages:
+  - kmod
+
+# List of tools to install in python venv
+facts_venv:
+  - name: jc
+    packages:
+      - jc
+
+# Additional facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
 
 # Run setup when facts change

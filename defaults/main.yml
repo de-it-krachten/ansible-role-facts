@@ -18,8 +18,19 @@ facts_custom:
   - name: scsi
   - name: mapper
   - name: platform
+  - name: lsmod
 
-# customer facts to distribute
+# List of packages required to custom facts
+facts_packages:
+  - kmod
+
+# List of tools to install in python venv
+facts_venv:
+  - name: jc
+    packages:
+      - jc
+
+# Additional facts to distribute
 facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
 
 # Run setup when facts change
