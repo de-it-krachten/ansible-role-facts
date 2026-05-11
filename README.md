@@ -15,6 +15,7 @@ Provisions custom facts and runs setup optionally
 
 #### Collections
 - ansible.windows
+- community.general
 
 ## Platforms
 
@@ -93,6 +94,14 @@ facts_run_setup: true
 
 # Execute setup in all cases
 facts_force_run_setup: false
+</pre></code>
+
+### defaults/family-Debian.yml
+<pre><code>
+# List of packages required to custom facts
+facts_packages:
+  - kmod
+  - python3-venv
 </pre></code>
 
 ### defaults/family-Windows.yml
