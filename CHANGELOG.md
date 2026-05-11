@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.18.0...v1.18.1) (2026-05-11)
+
+
+### Bug Fixes
+
+* Fix support for kernel module facts (lsmod) ([17e4580](https://github.com/de-it-krachten/ansible-role-facts/commit/17e4580063e992dd28dc136eefe4aab2ba383de0))
+
 # [1.18.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.17.0...v1.18.0) (2026-05-11)
 
 
