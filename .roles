@@ -1,2 +1,4 @@
 ---
-roles: []
+roles:
+  - name: deitkrachten.epel
+  - name: deitkrachten.python

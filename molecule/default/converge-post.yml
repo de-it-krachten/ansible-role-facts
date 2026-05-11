@@ -7,11 +7,13 @@
     - name: Show all custom facts (Linux)
       ansible.builtin.debug:
         var: ansible_local
+        verbosity: 1
 #      when: ansible_os_family != 'Windows'
 
     - name: Show all custom facts (Windows)
       ansible.builtin.debug:
         var: vars[item]
+        verbosity: 1
       loop: "{{ facts_custom | map('regex_replace', '^', 'ansible_') | list }}"
       loop_control:
         label: item

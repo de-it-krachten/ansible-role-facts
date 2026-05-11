@@ -1,5 +1,19 @@
 ---
 
+- name: Install packages needed
+  ansible.builtin.package:
+    name: "{{ facts_packages }}"
+    state: present
+  become: true
+
+- name: Install components in python venv
+  ansible.builtin.pip:
+    name: "{{ item.packages }}"
+    virtualenv: /usr/local/venv/{{ item.name }}
+    virtualenv_command: python3 -m venv
+  become: true
+  loop: "{{ facts_venv }}"
+
 - name: Create custom facts directory
   ansible.builtin.file:
     path: "{{ facts_path }}"
@@ -7,13 +21,14 @@
     owner: root
     group: root
     mode: "0755"
-  when: ansible_os_family != 'Windows'
+  become: true
 
 - name: Distributes custom facts
   ansible.builtin.template:
     src: "{{ fact.name }}.fact.j2"
     dest: "{{ facts_path }}/{{ fact.name }}.fact"
     mode: '0755'
+  become: true
   loop: "{{ _facts }}"
   loop_control:
     loop_var: fact

@@ -36,6 +36,8 @@ molecule:
   prepare:
     vars:
       auto_logon: true
+      install_python: true
+      activate_epel: true
   converge:
     post: converge-post.yml
   group_vars:
