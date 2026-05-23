@@ -17,4 +17,4 @@
       loop: "{{ facts_custom | map('regex_replace', '^', 'ansible_') | list }}"
       loop_control:
         label: item
-      when: ansible_os_family == 'Windows'
+      when: ansible_facts.os_family == 'Windows'
