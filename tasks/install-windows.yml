@@ -15,8 +15,8 @@
   register: _facts_results
   when:
     - fact.groups == 'all' or group_names | intersect(fact.groups)| length > 0
-    - fact.os == 'all' or ansible_distribution in fact.os
-    - fact.os_family == 'all' or ansible_os_family in fact.os_family
+    - fact.os == 'all' or ansible_facts.distribution in fact.os
+    - fact.os_family == 'all' or ansible_facts.os_family in fact.os_family
 
 - name: Execute setup
   ansible.builtin.setup:
