@@ -6,21 +6,21 @@
     state: present
     update_cache: true
   become: true
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts.os_family == 'Debian'
 
 - name: Install packages needed (RedHat-family)
   ansible.builtin.dnf:
     name: "{{ facts_packages }}"
     state: present
   become: true
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts.os_family == 'RedHat'
 
 - name: Install packages needed (Suse-family)
   community.general.zypper:
     name: "{{ facts_packages }}"
     state: present
   become: true
-  when: ansible_os_family == 'Suse'
+  when: ansible_facts.os_family == 'Suse'
 
 - name: Install components in python venv
   ansible.builtin.pip:
@@ -51,8 +51,8 @@
   register: _facts_results
   when:
     - fact.groups == 'all' or group_names | intersect(fact.groups)| length > 0
-    - fact.os == 'all' or ansible_distribution in fact.os
-    - fact.os_family == 'all' or ansible_os_family in fact.os_family
+    - fact.os == 'all' or ansible_facts.distribution in fact.os
+    - fact.os_family == 'all' or ansible_facts.os_family in fact.os_family
 
 - name: Execute setup
   ansible.builtin.setup:
