@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.18.1...v1.19.0) (2026-05-23)
+
+
+### Features
+
+* Support ansible-core 2.20 ([cf47338](https://github.com/de-it-krachten/ansible-role-facts/commit/cf4733821add82ddcdcd2c36b45db9b006cf4f9a))
+
 ## [1.18.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.18.0...v1.18.1) (2026-05-11)
 
 
