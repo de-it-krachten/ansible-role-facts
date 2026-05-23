@@ -23,6 +23,7 @@ facts_custom:
 # List of packages required to custom facts
 facts_packages:
   - kmod
+  - python3-packaging
 
 # List of tools to install in python venv
 facts_venv:
