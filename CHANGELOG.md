@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.0...v1.19.1) (2026-05-23)
+
+
+### Bug Fixes
+
+* Add missing python packages ([dd7d4d4](https://github.com/de-it-krachten/ansible-role-facts/commit/dd7d4d4f4242504c788cf5e5b5ba9bc000f01042))
+
 # [1.19.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.18.1...v1.19.0) (2026-05-23)
 
 
