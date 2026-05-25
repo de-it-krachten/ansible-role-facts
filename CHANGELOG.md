@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.1...v1.19.2) (2026-05-25)
+
+
+### Bug Fixes
+
+* Removed python3-packaging rpm ([11338fd](https://github.com/de-it-krachten/ansible-role-facts/commit/11338fd5503d5d0d24d2743e34ad9ffe1c2318aa))
+
 ## [1.19.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.0...v1.19.1) (2026-05-23)
 
 
