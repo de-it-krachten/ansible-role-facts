@@ -1,6 +1,0 @@
----
-
-# List of packages required to custom facts
-facts_packages:
-  - kmod
-  - python3-venv
