@@ -41,7 +41,14 @@ __facts_os_defaults:
     # Execute setup in all cases
     facts_force_run_setup: false
 
-  'family-RedHat':
+  'family-RedHat-8':
+    facts_packages:
+      - kmod
+  'family-RedHat-9':
+    facts_packages:
+      - kmod
+      - python3-packaging
+  'family-RedHat-10':
     facts_packages:
       - kmod
       - python3-packaging
