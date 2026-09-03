@@ -1,3 +1,10 @@
+## [1.19.3](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.2...v1.19.3) (2026-09-03)
+
+
+### Bug Fixes
+
+* Create package list for RedHat-family ([99e175c](https://github.com/de-it-krachten/ansible-role-facts/commit/99e175c98b6ddf9dba8a7722bcc534552c21be63))
+
 ## [1.19.2](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.1...v1.19.2) (2026-05-25)
 
 
