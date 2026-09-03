@@ -41,6 +41,10 @@ __facts_os_defaults:
     # Execute setup in all cases
     facts_force_run_setup: false
 
+  'family-RedHat':
+    facts_packages:
+      - kmod
+      - python3-packaging
   'family-Debian':
     # List of packages required to custom facts
     facts_packages:
@@ -60,10 +64,6 @@ __facts_os_defaults:
     facts_custom_additional: "{{ custom_facts_additional | default([]) }}"
     # Run setup when facts change
     facts_run_setup: true
-  'RedHat-10':
-    facts_packages:
-      - kmod
-      - python3-packaging
 
 # OS key helpers
 __facts_distro: "{{ ansible_facts.distribution }}"
