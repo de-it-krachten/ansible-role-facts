@@ -1,3 +1,10 @@
+## [1.19.4](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.3...v1.19.4) (2026-09-03)
+
+
+### Bug Fixes
+
+* python3-packaging is part of python3-pip on RHEL8 ([c554766](https://github.com/de-it-krachten/ansible-role-facts/commit/c5547660597b6e17df00dc98f245eb4222902f01))
+
 ## [1.19.3](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.2...v1.19.3) (2026-09-03)
 
 
