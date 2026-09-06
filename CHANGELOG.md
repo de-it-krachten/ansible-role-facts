@@ -1,3 +1,10 @@
+## [1.19.5](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.4...v1.19.5) (2026-09-06)
+
+
+### Bug Fixes
+
+* Add python3-packaging for Debian family ([4e9e78e](https://github.com/de-it-krachten/ansible-role-facts/commit/4e9e78eaaa093689f5a64c37d9ff7b59096c8d24))
+
 ## [1.19.4](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.3...v1.19.4) (2026-09-03)
 
 
