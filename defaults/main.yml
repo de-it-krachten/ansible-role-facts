@@ -57,6 +57,7 @@ __facts_os_defaults:
     facts_packages:
       - kmod
       - python3-venv
+      - python3-packaging
   'family-Windows':
     # facts location
     facts_path: c:\temp\facts
