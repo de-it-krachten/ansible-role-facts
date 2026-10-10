@@ -599,8 +599,8 @@ platforms:
         server_type: cx23
   debian11:
     name: Debian 11 (Bullseye)
-    ci: true
-    supported: true
+    ci: false
+    supported: false
     galaxy:
       name: Debian
       version: bullseye

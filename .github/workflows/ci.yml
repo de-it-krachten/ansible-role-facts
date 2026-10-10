@@ -415,16 +415,6 @@ jobs:
             python: "3.13"
             hetznercloud: False
 
-          - name: debian11
-            runs_on: ubuntu-22.04
-            distro: debian11
-            playbook: converge.yml
-            venv: "ansiblecore220"
-            ansible: "ansible-core>2.20,<2.21"
-            ansible_lint: "ansible-lint"
-            python: "3.13"
-            hetznercloud: False
-
           - name: debian12
             runs_on: ubuntu-22.04
             distro: debian12
