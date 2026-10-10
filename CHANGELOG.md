@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.5...v1.20.0) (2026-10-10)
+
+
+### Features
+
+* Drop support for Debian 11 (Bullseye) ([e394197](https://github.com/de-it-krachten/ansible-role-facts/commit/e394197e05def3003bdf3e415e6b9d3f175ee176))
+
 ## [1.19.5](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.4...v1.19.5) (2026-09-06)
 
 
