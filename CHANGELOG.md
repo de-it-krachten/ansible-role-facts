@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.20.0...v1.20.1) (2026-10-25)
+
+
+### Bug Fixes
+
+* Remove slurm fact ([e45e90c](https://github.com/de-it-krachten/ansible-role-facts/commit/e45e90c65c8fe9c3cb4bc49c412e5d55894772f6))
+
 # [1.20.0](https://github.com/de-it-krachten/ansible-role-facts/compare/v1.19.5...v1.20.0) (2026-10-10)
 
 
